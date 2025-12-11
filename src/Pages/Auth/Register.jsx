@@ -1,7 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router";
 
 const Register = () => {
+  const { registerUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -11,6 +14,13 @@ const Register = () => {
 
   const handleRegister = (data) => {
     console.log(data);
+    registerUser(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div>
@@ -70,6 +80,12 @@ const Register = () => {
             Register
           </button>
         </fieldset>
+        <p>
+          Already Account?Please go
+          <Link className="text-secondary " to={"/login"}>
+            Login
+          </Link>
+        </p>
       </form>
     </div>
   );
