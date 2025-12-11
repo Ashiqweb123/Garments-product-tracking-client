@@ -7,9 +7,9 @@ const Footer = () => {
       <aside>
         <Logo></Logo>
         <p className="font-bold">
-          ACME Industries Ltd.
+          Garments Fashion Ltd.
           <br />
-          Providing reliable tech since 1992
+          Providing reliable cloth since 1992
         </p>
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
       </aside>
