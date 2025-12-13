@@ -6,6 +6,7 @@ import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import PrivateRoute from "./PrivateRoute";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+import AllProducts from "../Pages/AllProducts/AllProducts";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
             <ProductDetails></ProductDetails>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/all-products",
+        Component: AllProducts,
       },
     ],
   },
