@@ -4,8 +4,10 @@ import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router";
 import SocialLogin from "./SocialLogin";
 
+import { uploadImageToImgbb } from "../../utils";
+
 const Register = () => {
-  const { registerUser } = useAuth();
+  const { registerUser, updateUserProfile } = useAuth();
   const {
     register,
     handleSubmit,
@@ -13,15 +15,26 @@ const Register = () => {
   } = useForm();
   console.log(errors);
 
-  const handleRegister = (data) => {
-    console.log(data);
-    registerUser(data.email, data.password)
-      .then((result) => {
-        console.log(result.user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleRegister = async (data) => {
+    try {
+      const result = await registerUser(data.email, data.password);
+      console.log(result.user);
+
+      const imageFile = data.image[0];
+
+      const imageUrl = await uploadImageToImgbb(imageFile);
+      console.log("after uploading image", imageUrl);
+
+      const userProfile = {
+        displayName: data.name,
+        photoURL: imageUrl,
+      };
+
+      await updateUserProfile(userProfile);
+      console.log("user profile updated");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div>
@@ -41,7 +54,7 @@ const Register = () => {
           <input
             {...register("image")}
             type="file"
-            className="input"
+            className="file-input"
             placeholder="Your Image"
           />
           <label className="label">Email</label>

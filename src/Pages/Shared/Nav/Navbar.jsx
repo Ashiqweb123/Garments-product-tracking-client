@@ -5,35 +5,45 @@ import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+
   const handleLogOut = () => {
     logOut()
       .then()
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
+
   const links = (
     <>
       <li>
-        <NavLink to="">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="">ALl-Product</NavLink>
-      </li>
-      <li>
-        <NavLink to="">About Us</NavLink>
-      </li>
-      <li>
-        <NavLink to="">Contact</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
 
       <li>
-        <NavLink to="">Register</NavLink>
+        <NavLink to="/products">All-Product</NavLink>
       </li>
 
-      {/* Home, All-Product, About Us, Contact, Login, and Register. */}
+      {!user ? (
+        <>
+          <li>
+            <NavLink to="/about">About Us</NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact">Contact</NavLink>
+          </li>
+          <li>
+            <NavLink to="/register">Register</NavLink>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
+
   return (
     <div className="navbar bg-primary text-white font-bold shadow-sm">
       <div className="navbar-start">
@@ -46,36 +56,50 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
+              />
             </svg>
           </div>
+
           <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            tabIndex={-1}
+            className="menu menu-sm dropdown-content bg-base-100 text-black rounded-box z-10 mt-3 w-52 p-2 shadow"
           >
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl w-30 my-3">
-          <Logo></Logo>
-        </a>
+
+        <Link to="/" className="btn btn-ghost text-xl w-30 my-3">
+          <Logo />
+        </Link>
       </div>
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end">
+
+      <div className="navbar-end gap-3">
         {user ? (
-          <a onClick={handleLogOut} className="btn btn-secondary">
-            LogOut
-          </a>
+          <>
+            <div className="avatar">
+              <div className="w-10 rounded-full">
+                <img
+                  src={user?.photoURL || "https://i.ibb.co/2kRZ1mL/user.png"}
+                  alt="user"
+                />
+              </div>
+            </div>
+
+            <button onClick={handleLogOut} className="btn btn-secondary">
+              LogOut
+            </button>
+          </>
         ) : (
-          <Link to={"/login"} className="btn btn-secondary">
+          <Link to="/login" className="btn btn-secondary">
             Log-in
           </Link>
         )}
