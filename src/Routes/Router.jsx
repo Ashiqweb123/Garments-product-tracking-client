@@ -5,8 +5,9 @@ import AuthLayout from "../Layout/AuthLayout";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import PrivateRoute from "./PrivateRoute";
-import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+
 import AllProducts from "../Pages/AllProducts/AllProducts";
+import ProductDetails from "../Pages/Home/Home/Product-Details/ProductDetails";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "/product-details",
+        path: "/product/:id",
         element: (
           <PrivateRoute>
             <ProductDetails></ProductDetails>
