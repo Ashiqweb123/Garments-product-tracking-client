@@ -11,13 +11,15 @@ const OurProducts = () => {
   } = useQuery({
     queryKey: ["home-products"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:3000/home-products");
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/home-products`
+      );
       return res.data;
     },
   });
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error fetching products</p>;
+  if (error) return <p>Error</p>;
 
   return (
     <div className="p-4">
@@ -47,7 +49,6 @@ const OurProducts = () => {
         ))}
       </div>
 
-      {/* View All button centered below the grid */}
       <div className="flex justify-center mt-8">
         <Link to="/all-products" className="btn btn-primary btn-wide">
           View All
