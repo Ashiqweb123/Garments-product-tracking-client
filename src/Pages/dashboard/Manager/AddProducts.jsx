@@ -113,10 +113,10 @@ const AddProducts = () => {
                   name="category"
                   {...register("category", { required: true })}
                 >
-                  <option value="Indoor">Shirt</option>
-                  <option value="Outdoor">pant</option>
-                  <option value="Succulent">jackeeet</option>
-                  <option value="Flowering">hoodie</option>
+                  <option value="shirt">Shirt</option>
+                  <option value="pant">pant</option>
+                  <option value="jackeeet">jackeeet</option>
+                  <option value="hoodie">hoodie</option>
                 </select>
                 {errors.category && (
                   <span className="text-xs text-red-500">
