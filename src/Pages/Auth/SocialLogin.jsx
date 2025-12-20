@@ -1,26 +1,35 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router";
+import { saveUpdateUser } from "../../utils";
 
 const SocialLogin = () => {
   const { signInGoogle } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
 
-  const handleGoogleLogin = () => {
-    signInGoogle()
-      .then((result) => {
-        console.log(result.user);
-        navigate(location?.state || "/");
-      })
-      .catch((err) => {
-        console.log(err);
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInGoogle();
+      const user = result.user;
+
+      console.log(user);
+
+      await saveUpdateUser({
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
       });
+
+      // 3️⃣ Redirect
+      navigate(location?.state || "/");
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   return (
     <div className="text-center">
-      {/* Google */}
       <p className="text-center font-bold">Or</p>
       <button
         onClick={handleGoogleLogin}

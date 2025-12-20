@@ -1,3 +1,4 @@
+// image-bb
 import axios from "axios";
 
 export const uploadImageToImgbb = async (imageFile) => {
@@ -10,4 +11,13 @@ export const uploadImageToImgbb = async (imageFile) => {
 
   const res = await axios.post(imageUrl, formData);
   return res.data.data.url;
+};
+
+//save or update user db
+export const saveUpdateUser = async (userData) => {
+  const { data } = await axios.post(
+    `${import.meta.env.VITE_API_URL}/user`,
+    userData
+  );
+  return data;
 };

@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router";
 import SocialLogin from "./SocialLogin";
 
-import { uploadImageToImgbb } from "../../utils";
+import { saveUpdateUser, uploadImageToImgbb } from "../../utils";
 
 const Register = () => {
   const { registerUser, updateUserProfile } = useAuth();
@@ -24,7 +24,11 @@ const Register = () => {
 
       const imageUrl = await uploadImageToImgbb(imageFile);
       console.log("after uploading image", imageUrl);
-
+      await saveUpdateUser({
+        name: data.name,
+        email: data.email,
+        image: imageUrl,
+      });
       const userProfile = {
         displayName: data.name,
         photoURL: imageUrl,

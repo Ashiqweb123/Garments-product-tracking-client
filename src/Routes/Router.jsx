@@ -12,6 +12,7 @@ import DashboardLayout from "../Layout/dashboard/DashboardLayout";
 import AddProducts from "../Pages/dashboard/Manager/AddProducts";
 import PaymentSuccess from "../Pages/Payment/PaymentSuccess";
 import MyOrders from "../Pages/dashboard/Buyer/MyOrders";
+import ManageOrders from "../Pages/dashboard/Manager/ManageOrders";
 
 export const router = createBrowserRouter([
   {
@@ -77,6 +78,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrders></MyOrders>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-orders",
+        element: (
+          <PrivateRoute>
+            <ManageOrders></ManageOrders>
           </PrivateRoute>
         ),
       },
