@@ -5,8 +5,47 @@ import {
   FaShoppingBag,
   FaTruck,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const HowWorks = () => {
+  // Animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.3,
+        duration: 0.6,
+        type: "spring",
+        stiffness: 50,
+      },
+    }),
+  };
+
+  const steps = [
+    {
+      icon: <FaShoppingBag />,
+      title: "Browse Products",
+      desc: "Explore our latest garment collection easily.",
+    },
+    {
+      icon: <FaRegClipboard />,
+      title: "Place Order",
+      desc: "Select your desired items and place an order online.",
+    },
+    {
+      icon: <FaBoxOpen />,
+      title: "Track Production",
+      desc: "Monitor your order as it moves through production.",
+    },
+    {
+      icon: <FaTruck />,
+      title: "Receive Delivery",
+      desc: "Get your order delivered to your doorstep.",
+    },
+  ];
+
   return (
     <div className="bg-[#FFF8F0] py-12">
       <h2 className="text-3xl font-bold text-center text-[#4B2E2E] mb-12">
@@ -14,57 +53,23 @@ const HowWorks = () => {
       </h2>
 
       <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-        {/* Step 1: Browse Products */}
-        <div className="bg-[#F5F0EB] p-6 rounded-lg shadow-md flex flex-col items-center text-center w-64">
-          <div className="text-5xl mb-4 text-[#8B4513]">
-            <FaShoppingBag />
-          </div>
-          <h3 className="text-xl font-semibold text-[#8B4513] mb-2">
-            Browse Products
-          </h3>
-          <p className="text-[#7E5C52]">
-            Explore our latest garment collection easily.
-          </p>
-        </div>
-
-        {/* Step 2: Place Order */}
-        <div className="bg-[#F5F0EB] p-6 rounded-lg shadow-md flex flex-col items-center text-center w-64">
-          <div className="text-5xl mb-4 text-[#8B4513]">
-            <FaRegClipboard />
-          </div>
-          <h3 className="text-xl font-semibold text-[#8B4513] mb-2">
-            Place Order
-          </h3>
-          <p className="text-[#7E5C52]">
-            Select your desired items and place an order online.
-          </p>
-        </div>
-
-        {/* Step 3: Track Production */}
-        <div className="bg-[#F5F0EB] p-6 rounded-lg shadow-md flex flex-col items-center text-center w-64">
-          <div className="text-5xl mb-4 text-[#8B4513]">
-            <FaBoxOpen />
-          </div>
-          <h3 className="text-xl font-semibold text-[#8B4513] mb-2">
-            Track Production
-          </h3>
-          <p className="text-[#7E5C52]">
-            Monitor your order as it moves through production.
-          </p>
-        </div>
-
-        {/* Step 4: Receive Delivery */}
-        <div className="bg-[#F5F0EB] p-6 rounded-lg shadow-md flex flex-col items-center text-center w-64">
-          <div className="text-5xl mb-4 text-[#8B4513]">
-            <FaTruck />
-          </div>
-          <h3 className="text-xl font-semibold text-[#8B4513] mb-2">
-            Receive Delivery
-          </h3>
-          <p className="text-[#7E5C52]">
-            Get your order delivered to your doorstep.
-          </p>
-        </div>
+        {steps.map((step, index) => (
+          <motion.div
+            key={index}
+            className="bg-[#F5F0EB] p-6 rounded-lg shadow-md flex flex-col items-center text-center w-64"
+            variants={cardVariants}
+            initiF="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            custom={index}
+          >
+            <div className="text-5xl mb-4 text-[#8B4513]">{step.icon}</div>
+            <h3 className="text-xl font-semibold text-[#8B4513] mb-2">
+              {step.title}
+            </h3>
+            <p className="text-[#7E5C52]">{step.desc}</p>
+          </motion.div>
+        ))}
       </div>
     </div>
   );

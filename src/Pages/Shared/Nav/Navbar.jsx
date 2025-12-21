@@ -19,7 +19,7 @@ const Navbar = () => {
       </li>
 
       <li>
-        <NavLink to="/products">All-Product</NavLink>
+        <NavLink to="/all-products">All-Product</NavLink>
       </li>
 
       {!user ? (

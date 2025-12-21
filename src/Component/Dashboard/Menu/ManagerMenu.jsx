@@ -11,11 +11,16 @@ const ManagerMenu = () => {
         label="Add Products"
         address="add-products"
       />
-      <MenuItem icon={MdHomeWork} label="My Inventory" address="my-inventory" />
+      {/* <MenuItem icon={MdHomeWork} label="My Inventory" address="my-inventory" /> */}
       <MenuItem
         icon={MdOutlineManageHistory}
-        label="Manage Orders"
-        address="manage-orders"
+        label="Manage Products"
+        address="manage-products"
+      />
+      <MenuItem
+        icon={MdOutlineManageHistory}
+        label="Pending Orders"
+        address="pending-orders"
       />
     </>
   );

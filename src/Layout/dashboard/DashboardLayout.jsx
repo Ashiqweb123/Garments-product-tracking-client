@@ -1,18 +1,26 @@
 import { Outlet } from "react-router";
 import Sidebar from "../../Component/Dashboard/Menu/Sidebar";
-// import Sidebar from '../components/Dashboard/Sidebar/Sidebar'
+import Navbar from "../../Pages/Shared/Nav/Navbar";
+import Footer from "../../Pages/Shared/Footer/Footer";
 
 const DashboardLayout = () => {
   return (
     <div className="relative min-h-screen md:flex bg-white">
       {/* Left Side: Sidebar Component */}
       <Sidebar />
-      {/* Right Side: Dashboard Dynamic Content */}
-      <div className="flex-1  md:ml-64">
-        <div className="p-5">
-          {/* Outlet for dynamic contents */}
+
+      {/* Right Side: Main Content */}
+      <div className="flex-1 md:ml-64 flex flex-col min-h-screen">
+        {/* Navbar on top */}
+        <Navbar />
+
+        {/* Dynamic content in the middle */}
+        <main className="flex-1 p-5">
           <Outlet />
-        </div>
+        </main>
+
+        {/* Footer at the bottom */}
+        <Footer />
       </div>
     </div>
   );

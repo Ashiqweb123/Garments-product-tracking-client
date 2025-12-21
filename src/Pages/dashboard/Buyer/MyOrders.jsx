@@ -1,20 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import BuyerOrderDataRow from "../../../Component/Dashboard/Menu/TableRow/BuyerOrderDataRow";
-import axios from "axios";
+
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyOrders = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const { data: orders = [], isLoading } = useQuery({
     queryKey: ["orders", user?.email],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/my-orders/${user?.email}`
-      );
+      const res = await axiosSecure(`/my-orders`);
       return res.data;
     },
   });
-  console.log(MyOrders);
+  // console.log(MyOrders);
 
   if (isLoading) return <p>Loading...</p>;
   return (
@@ -72,7 +72,6 @@ const MyOrders = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <BuyerOrderDataRow></BuyerOrderDataRow>
                   {orders.map((order) => (
                     <BuyerOrderDataRow
                       key={order._id}

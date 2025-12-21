@@ -2,12 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { uploadImageToImgbb } from "../../../utils";
 import useAuth from "../../../hooks/useAuth";
-import axios from "axios";
+
 import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const AddProducts = () => {
   // use mutation use case
-
+  const axiosSecure = useAxiosSecure();
   const {
     isError,
     isPending,
@@ -15,10 +17,13 @@ const AddProducts = () => {
     reset: mutationReset,
   } = useMutation({
     mutationFn: async (payload) =>
-      await axios.post(`${import.meta.env.VITE_API_URL}/products`, payload),
+      await axiosSecure.post(
+        `${import.meta.env.VITE_API_URL}/products`,
+        payload
+      ),
     onSuccess: (data) => {
       console.log(data);
-      alert("plant add success");
+      toast.success("Product added successfully!");
       mutationReset();
     },
     onError: (error) => {

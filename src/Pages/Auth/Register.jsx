@@ -7,7 +7,7 @@ import SocialLogin from "./SocialLogin";
 import { saveUpdateUser, uploadImageToImgbb } from "../../utils";
 
 const Register = () => {
-  const { registerUser, updateUserProfile } = useAuth();
+  const { registerUser, updateUserProfile, setLoading } = useAuth();
   const {
     register,
     handleSubmit,
@@ -38,6 +38,8 @@ const Register = () => {
       console.log("user profile updated");
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
   return (

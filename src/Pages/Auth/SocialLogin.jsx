@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router";
 import { saveUpdateUser } from "../../utils";
 
 const SocialLogin = () => {
-  const { signInGoogle } = useAuth();
+  const { signInGoogle, setLoading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -25,6 +25,8 @@ const SocialLogin = () => {
       navigate(location?.state || "/");
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
 

@@ -12,7 +12,16 @@ import DashboardLayout from "../Layout/dashboard/DashboardLayout";
 import AddProducts from "../Pages/dashboard/Manager/AddProducts";
 import PaymentSuccess from "../Pages/Payment/PaymentSuccess";
 import MyOrders from "../Pages/dashboard/Buyer/MyOrders";
-import ManageOrders from "../Pages/dashboard/Manager/ManageOrders";
+
+import Profile from "../Pages/dashboard/Common/Profile";
+import ManageUsers from "../Pages/dashboard/Admin/ManageUsers";
+import ManagerRequest from "../Pages/dashboard/Admin/ManagerRequest";
+import ManagerRoute from "./ManagerRoute";
+import AdminRoute from "./AdminRoute";
+import ManageProducts from "../Pages/dashboard/Manager/ManageProducts";
+import PendingOrder from "../Pages/dashboard/Manager/PendingOrder";
+import AllOrders from "../Pages/dashboard/Admin/AllOrders";
+import Error from "../Pages/Error";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +49,10 @@ export const router = createBrowserRouter([
         Component: PaymentSuccess,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Error></Error>,
   },
 
   {
@@ -69,7 +82,9 @@ export const router = createBrowserRouter([
         path: "add-products",
         element: (
           <PrivateRoute>
-            <AddProducts></AddProducts>
+            <ManagerRoute>
+              <AddProducts></AddProducts>
+            </ManagerRoute>
           </PrivateRoute>
         ),
       },
@@ -81,11 +96,62 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       {
-        path: "manage-orders",
+        path: "manage-products",
         element: (
           <PrivateRoute>
-            <ManageOrders></ManageOrders>
+            <ManagerRoute>
+              <ManageProducts></ManageProducts>
+            </ManagerRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "pending-orders",
+        element: (
+          <PrivateRoute>
+            <ManagerRoute>
+              <PendingOrder></PendingOrder>
+            </ManagerRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers></ManageUsers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "all-orders",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllOrders></AllOrders>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manager-request",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManagerRequest></ManagerRequest>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
           </PrivateRoute>
         ),
       },

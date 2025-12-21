@@ -1,9 +1,11 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+
 import { Link } from "react-router";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllProducts = () => {
+  const axiousSecure = useAxiosSecure();
   const {
     data: products = [],
     isLoading,
@@ -11,7 +13,9 @@ const AllProducts = () => {
   } = useQuery({
     queryKey: ["all-products"],
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
+      const res = await axiousSecure.get(
+        `${import.meta.env.VITE_API_URL}/products`
+      );
       return res.data;
     },
   });

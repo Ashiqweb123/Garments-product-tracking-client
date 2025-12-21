@@ -14,6 +14,8 @@ import AdminMenu from "./AdminMenu";
 import BuyerMenu from "./BuyerMenu";
 import ManagerMenu from "./ManagerMenu";
 
+import useRole from "../../../hooks/useRole";
+
 // User Menu
 
 // import AdminMenu from "./Menu/AdminMenu";
@@ -24,12 +26,14 @@ const Sidebar = () => {
   //   const { logOut } = useAuth()
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
-
+  const [role, isRoleLoading] = useRole();
+  if (isRoleLoading) return null;
+  console.log("ROLE FROM HOOK:", role);
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
   };
-
+  console.log(role);
   return (
     <>
       {/* Small Screen Navbar, only visible till md breakpoint */}
@@ -61,7 +65,7 @@ const Sidebar = () => {
           {/* Top Content */}
           <div>
             {/* Logo */}
-            <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto">
+            <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center mx-auto">
               <Link to="/">
                 {/* <img src={logo} alt='logo' width='100' height='100' /> */}
                 <Logo></Logo>
@@ -73,19 +77,9 @@ const Sidebar = () => {
           <div className="flex flex-col justify-between flex-1 mt-6">
             {/* Menu Items */}
             <nav>
-              {/* Common Menu */}
-              <MenuItem
-                icon={BsGraphUp}
-                label="Statistics"
-                address="/dashboard"
-              />
-              {/* Role-Based Menu */}
-              {/* <CustomerMenu />
-              <SellerMenu />
-              <AdminMenu /> */}
-              <AdminMenu></AdminMenu>
-              <BuyerMenu></BuyerMenu>
-              <ManagerMenu></ManagerMenu>
+              {role === "buyer" && <BuyerMenu></BuyerMenu>}
+              {role === "manager" && <ManagerMenu></ManagerMenu>}
+              {role === "admin" && <AdminMenu></AdminMenu>}
             </nav>
           </div>
 

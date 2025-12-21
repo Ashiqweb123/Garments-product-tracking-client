@@ -3,22 +3,19 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useParams } from "react-router";
 import PurchaseModal from "../../../../Component/Modal/PurchaseModal";
+import useRole from "../../../../hooks/useRole"; // path adjust
+import useAuth from "../../../../hooks/useAuth";
 
 const ProductDetails = () => {
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const closeModal = () => setIsOpen(false);
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  const { user } = useAuth();
+  const [role, isRoleLoading] = useRole();
 
   const { id } = useParams();
-  console.log(id);
 
-  const {
-    data: product = {},
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: product = {}, isLoading } = useQuery({
     queryKey: ["product", id],
     queryFn: async () => {
       const result = await axios(
@@ -27,16 +24,18 @@ const ProductDetails = () => {
       return result.data;
     },
   });
-  console.log(product);
+
+  if (isLoading) return <p>Loading.....</p>;
+
   const { image, name, description, category, price, manager, quantity } =
     product;
-  if (isLoading) <p>Loading.....</p>;
+
   return (
     <div>
       <h2>details</h2>
       <div className="card card-side bg-base-100 shadow-sm">
         <figure>
-          <img src={image} alt="Movie" />
+          <img src={image} alt={name} />
         </figure>
         <div className="card-body">
           <h2 className="card-title">Name: {name}</h2>
@@ -44,6 +43,7 @@ const ProductDetails = () => {
           <p>Category: {category}</p>
           <p>Quantity: {quantity}</p>
           <p>Price: {price}</p>
+
           <h2 className="text-3xl">MANAGER INFO</h2>
           <div className="flex justify-between items-center gap-30">
             <p>Name:{manager?.name}</p>
@@ -51,15 +51,25 @@ const ProductDetails = () => {
               <img
                 src={manager?.image}
                 className="rounded-full w-10"
-                alt="Movie"
+                alt={manager?.name}
               />
             </figure>
             <p>email: {manager?.email}</p>
           </div>
+
           <div className="card-actions justify-end">
-            <button onClick={() => setIsOpen(true)} className="btn btn-primary">
-              Order
-            </button>
+            {user && role === "buyer" ? (
+              <button
+                onClick={() => setIsOpen(true)}
+                className="btn btn-primary"
+              >
+                Order
+              </button>
+            ) : (
+              <button className="btn btn-disabled" disabled>
+                Order
+              </button>
+            )}
           </div>
 
           <hr className="my-6" />
