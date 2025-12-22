@@ -1,16 +1,121 @@
-# React + Vite
+Garments Order Tracking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full‑stack Garments Order Tracking System built with React, Node.js, Express, MongoDB, and JWT Authentication. This project is designed for managing garments products, orders, and users with role‑based access.
 
-Currently, two official plugins are available:
+🔗 Live Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+https://garments-tracking-system.web.app/
 
-## React Compiler
+📌 Project Details
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Project Name: Garments Order Tracking System
+Project Type: Full-Stack Web Application
+Purpose: To manage garments products, customer orders, and user roles (User / Admin / Manager) in a secure and efficient way.
 
-## Expanding the ESLint configuration
+🎯 Project Objective
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The main objective of this project is to provide a complete garments management solution where:
+
+Users can browse products, view details, and place orders
+
+Admins/Managers can manage products and orders
+
+Authentication and authorization ensure secure access
+
+🧩 Core Functionalities
+
+Product listing with limit (Home page shows first 6 products)
+
+Product details page with dynamic routing
+
+User authentication (Login & Register)
+
+Role-based dashboard (User / Admin)
+
+Order management system
+
+Conditional Navbar (Before & After Login)
+
+🔐 Security & Access Control
+
+JWT-based authentication
+
+Protected API routes
+
+Protected frontend routes
+
+Role-based authorization
+
+🌐 User Flow
+
+User visits Home page
+
+Views featured products
+
+Registers or logs in
+
+Views product details
+
+Places orders
+
+Accesses dashboard based on role
+
+🚀 Features
+🔓 Public (Before Login)
+
+Home Page with featured products (limit 6)
+
+All Products page
+
+About Us & Contact pages
+
+User Registration & Login
+
+🔐 User (After Login)
+
+View all products
+
+Product details page
+
+Place orders
+
+User dashboard
+
+Secure logout
+
+🛠️ Admin / Manager
+
+Add, update, delete products
+
+Manage all orders
+
+Approve or reject orders
+
+Protected dashboard routes
+
+🧑‍💻 Technologies Used
+Frontend
+
+React
+
+React Router
+
+Axios
+
+Tailwind CSS
+
+DaisyUI
+
+React Hook Form
+
+Backend
+
+Node.js
+
+Express.js
+
+MongoDB
+
+JWT Authentication
+
+dotenv
