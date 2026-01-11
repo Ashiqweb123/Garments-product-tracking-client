@@ -3,53 +3,68 @@ import Logo from "../../../Component/Logo/Logo";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-horizontal footer-center bg-primary text-primary-content p-10">
-      <aside>
-        <Logo></Logo>
-        <p className="font-bold">
-          Garments Fashion Ltd.
-          <br />
-          Providing reliable cloth since 1992
-        </p>
-        <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
-      </aside>
-      <nav>
-        <div className="grid grid-flow-col gap-4">
-          <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="fill-current"
-            >
-              <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-            </svg>
+    <footer className="bg-primary text-primary-content py-10 px-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        {/* Column 1: Main Logo */}
+        <div className="flex justify-center md:justify-start">
+          <Logo />
+        </div>
+
+        {/* Column 2: Contact Info */}
+        <div className="text-center md:text-left space-y-2">
+          <h3 className="font-bold text-lg mb-2">Contact Us</h3>
+
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/8801869614405"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center md:justify-start gap-2 hover:text-secondary transition-colors"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+              alt="WhatsApp"
+              className="w-6 h-6"
+            />
+            <span>01869614405</span>
           </a>
-          <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="fill-current"
-            >
-              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-            </svg>
-          </a>
-          <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="fill-current"
-            >
-              <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-            </svg>
+
+          {/* Email */}
+          <a
+            href="mailto:rabiulazim430@gmail.com"
+            className="block hover:text-secondary transition-colors"
+          >
+            📧 rabiulazim430@gmail.com
           </a>
         </div>
-      </nav>
+
+        {/* Column 3: LinkedIn */}
+        <div className="text-center md:text-left">
+          <h3 className="font-bold text-lg mb-2">Connect</h3>
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center md:justify-start gap-2 hover:text-secondary transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              className="fill-current"
+            >
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 11.268h-3v-5.604c0-1.337-.027-3.058-1.864-3.058-1.865 0-2.151 1.455-2.151 2.958v5.704h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.562 2.838-1.562 3.035 0 3.599 2 3.599 4.604v6.591z" />
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Bottom */}
+      <div className="mt-10 text-center text-sm text-primary-content/70">
+        Copyright © {new Date().getFullYear()} - All rights reserved
+      </div>
     </footer>
   );
 };

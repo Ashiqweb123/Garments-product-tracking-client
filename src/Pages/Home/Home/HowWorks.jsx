@@ -8,19 +8,23 @@ import {
 import { motion } from "framer-motion";
 
 const HowWorks = () => {
-  // Animation variants
+  // Animation variants for cards
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.3,
+        delay: i * 0.2,
         duration: 0.6,
         type: "spring",
         stiffness: 50,
       },
     }),
+    hover: {
+      scale: 1.05,
+      transition: { duration: 0.3, type: "spring", stiffness: 100 },
+    },
   };
 
   const steps = [
@@ -47,24 +51,27 @@ const HowWorks = () => {
   ];
 
   return (
-    <div className="bg-[#FFF8F0] py-12">
-      <h2 className="text-3xl font-bold text-center text-[#4B2E2E] mb-12">
+    <div className="bg-[#FFF8F0] py-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-[#4B2E2E] mb-12">
         How It Works
       </h2>
 
-      <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-8 flex-wrap">
         {steps.map((step, index) => (
           <motion.div
             key={index}
-            className="bg-[#F5F0EB] p-6 rounded-lg shadow-md flex flex-col items-center text-center w-64"
+            className="bg-[#F5F0EB] p-8 rounded-xl shadow-lg flex flex-col items-center text-center w-64 md:w-72 h-80 md:h-80 cursor-pointer"
             variants={cardVariants}
-            initiF="hidden"
+            initial="hidden"
             whileInView="visible"
+            whileHover="hover"
             viewport={{ once: true, amount: 0.3 }}
             custom={index}
           >
-            <div className="text-5xl mb-4 text-[#8B4513]">{step.icon}</div>
-            <h3 className="text-xl font-semibold text-[#8B4513] mb-2">
+            <div className="text-5xl md:text-6xl mb-4 text-[#8B4513]">
+              {step.icon}
+            </div>
+            <h3 className="text-xl md:text-2xl font-semibold text-[#8B4513] mb-3">
               {step.title}
             </h3>
             <p className="text-[#7E5C52]">{step.desc}</p>

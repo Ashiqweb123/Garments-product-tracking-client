@@ -22,6 +22,8 @@ import ManageProducts from "../Pages/dashboard/Manager/ManageProducts";
 import PendingOrder from "../Pages/dashboard/Manager/PendingOrder";
 import AllOrders from "../Pages/dashboard/Admin/AllOrders";
 import Error from "../Pages/Error";
+import AboutUs from "../Pages/About-us/AboutUs";
+import ContactUs from "../Pages/Contact/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -34,22 +36,36 @@ export const router = createBrowserRouter([
       },
       {
         path: "/product/:id",
-        element: (
-          <PrivateRoute>
-            <ProductDetails></ProductDetails>
-          </PrivateRoute>
-        ),
+        element: <ProductDetails></ProductDetails>,
       },
       {
         path: "/all-products",
         Component: AllProducts,
       },
       {
+        path: "/about",
+        Component: AboutUs,
+      },
+      {
+        path: "/contact",
+        Component: ContactUs,
+      },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
+      },
+
+      {
         path: "/payment-success",
         Component: PaymentSuccess,
       },
     ],
   },
+
   {
     path: "*",
     element: <Error></Error>,
