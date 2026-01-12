@@ -24,6 +24,8 @@ import AllOrders from "../Pages/dashboard/Admin/AllOrders";
 import Error from "../Pages/Error";
 import AboutUs from "../Pages/About-us/AboutUs";
 import ContactUs from "../Pages/Contact/ContactUs";
+import BuyerOverview from "../Pages/dashboard/Buyer/BuyerOverview";
+import AdminOverview from "../Pages/dashboard/Admin/AdminOverview";
 
 export const router = createBrowserRouter([
   {
@@ -112,6 +114,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "buyer-overview",
+        element: (
+          <PrivateRoute>
+            <BuyerOverview></BuyerOverview>
+          </PrivateRoute>
+        ),
+      },
 
       {
         path: "manage-products",
@@ -139,6 +149,16 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <ManageUsers></ManageUsers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "overview",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdminOverview></AdminOverview>
             </AdminRoute>
           </PrivateRoute>
         ),

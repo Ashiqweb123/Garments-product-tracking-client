@@ -41,7 +41,6 @@ const Login = () => {
     }
   };
 
-  // Demo login button handler
   const handleDemoLogin = (role) => {
     let credentials = { email: "", password: "" };
     if (role === "admin") {

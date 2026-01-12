@@ -7,9 +7,8 @@ const AllOrders = () => {
   const axiosSecure = useAxiosSecure();
   const [statusFilter, setStatusFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const ordersPerPage = 5; // Number of orders per page
+  const ordersPerPage = 5;
 
-  // Fetch orders (React Query v5)
   const { data: orders = [], isLoading } = useQuery({
     queryKey: ["orders"],
     queryFn: async () => {
@@ -18,12 +17,10 @@ const AllOrders = () => {
     },
   });
 
-  // Filter orders by status
   const filteredOrders = orders.filter((order) =>
     statusFilter ? order.status === statusFilter : true
   );
 
-  // Pagination logic
   const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
   const startIndex = (currentPage - 1) * ordersPerPage;
   const paginatedOrders = filteredOrders.slice(
@@ -43,7 +40,7 @@ const AllOrders = () => {
           value={statusFilter}
           onChange={(e) => {
             setStatusFilter(e.target.value);
-            setCurrentPage(1); // Reset page when filter changes
+            setCurrentPage(1);
           }}
           className="border p-2 rounded"
         >
